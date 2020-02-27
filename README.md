@@ -118,12 +118,11 @@ docker-compose up
 ```
 open another terminal and get container id using docker ps command
 ```
-```
 docker exec -it CONTAINER_ID npm run test 
 ```
 Here we will have live updates of the test cases and interactive terminal for testing 
 
-Approach 2
+*Approach 2*
 
 Switch to test branch to see the files exactly like it is discribed in this section
 
