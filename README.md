@@ -1,6 +1,10 @@
 This is a sample project to demonstrate how React JS app can be build, tested and deployed into an nignx server using docker container. The last part of this doc disscuss deploying docker containers to Azure cloud using Azure container registry and azure web app for containers.
 
+The react project can be created using 
 
+```
+npx create-react-app PROJECT_NAME
+```
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
