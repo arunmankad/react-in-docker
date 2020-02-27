@@ -67,3 +67,17 @@ Switch to docker-compose branch to see the files exactly like it is discribed in
 git checkout -b docker-compose origin/docker-compose
 Branch 'docker-compose' set up to track remote branch 'docker-compose' from 'origin'.
 ```
+docker-compose.yml file is created will help avoid lengthy docker run command, with volume mapping and port ,mapping  => docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app IMAGE_ID. 
+Instead we call build the image and run the container using "docker-compose up --build",
+if image is already built, we needs to run use "docker-compose up" 
+
+```
+docker-compose up --build
+```
+```
+docker-compose up
+```
+```
+docker-compose down
+```
+## Unit testing react app
