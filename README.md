@@ -187,3 +187,13 @@ docker run -it -p 8080:80 IMAGE_ID
 ```
 
 # **Deploying the containerized react app into Azure** 
+
+**Steps** 
+Create Azure container registry
+build image in local using Dockefile (taging the image to ACR registry name will help)
+login to docker-ACR eg docker login arunm1.azurecr.io
+Will prompt for credentials => get it from Access Keys section in Azure CR
+Once logged in, push the local image into ACR eg docker push <Image tag>
+Create a web app for container in Azure, in its container settings section choose ACR as Image source, then select the registry and image. Switch on Continous deployment option, this will create a webhook and publish it in the resource group.
+With the webhook published, every new push of image into ACR will trigger a new deployment into the container. 
+
