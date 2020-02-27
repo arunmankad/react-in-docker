@@ -81,3 +81,11 @@ docker-compose up
 docker-compose down
 ```
 ## Unit testing react app
+To run test in interactive mode, build the image using Dockerfile.dev and run it by replace the command in dockerfile
+
+```
+docker build -f Dockerfile.dev .
+```
+```
+docker run IMAGE_ID npm run test
+```
