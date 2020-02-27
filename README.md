@@ -96,12 +96,7 @@ docker-compose up
 docker-compose down
 ```
 ## Unit testing react app
-Switch to test branch to see the files exactly like it is discribed in this section
-
-```
-git checkout -b test origin/test
-Branch 'test' set up to track remote branch 'test' from 'origin'.
-```
+No need to switch branch, discuss first few cases with docker-compose branch itself 
 **Unit testing in interactive terminal**
 To run test in interactive mode, build the image using Dockerfile.dev and run it by replacing the command in dockerfile
 
@@ -110,4 +105,52 @@ docker build -f Dockerfile.dev .
 ```
 ```
 docker run -it IMAGE_ID npm run test
+```
+**Live updates in test**
+With the above approach live updates on test cases won't get reflected in execution
+
+*Approach 1*
+
+Here we create a single container with docker-compose.yml file and then will get our terminal attached to it by using "docker exec" command 
+
+```
+docker-compose up
+```
+open another terminal and get container id using docker ps command
+```
+```
+docker exec -it CONTAINER_ID npm run test 
+```
+Here we will have live updates of the test cases and interactive terminal for testing 
+
+Approach 2
+
+Switch to test branch to see the files exactly like it is discribed in this section
+
+```
+git checkout -b test origin/test
+Branch 'test' set up to track remote branch 'test' from 'origin'.
+```
+as part of this approach we will add a second service into the docker-compose file, solely responsible for running our test suites.
+
+```
+version: '3'
+services: 
+  react-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports: 
+      - "3000:3000"
+    volumes:
+      - /app/node_modules
+      - .:/app
+  react-test:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - .:/app
+    command: ["npm", "run", "test"]
 ```
