@@ -153,3 +153,37 @@ services:
       - .:/app
     command: ["npm", "run", "test"]
 ```
+the second service in decoker compose will give us capability of running the test suite with hot loading of test cases(along with app running in dev mode), but even with docker exec we wn't get the interactive terminal which is a down side to this aaproach.
+
+## Build for prod 
+Switch to nginx branch to see the files exactly like it is discribed in this section
+
+```
+git checkout -b nginx origin/nginx
+Branch 'nginx' set up to track remote branch 'nginx' from 'origin'.
+```
+Till now, while we were running our app in dev mode, we were relying on the dev server provided as part of create-react-app to serve our app. In prod mode we need another server to serve our app, which is going to be NGINX!.
+
+We will create another Dockerfile meant for prod builds, this time name of the file is going to be the familiar 'Dockerfile' so that while building the image we don't have to explicilty provide the name of the file.
+
+Dockerfile
+```
+FROM node:alpine as builder
+WORKDIR '/app'
+COPY package.json .
+RUN npm install
+COPY . .
+RUN npm run build
+
+FROM nginx
+COPY --from=builder /app/build /usr/share/nginx/html
+```
+This will build the react app using alpine version of node and then copy the content of build folder into nginx server. 
+
+The image created from the docker file has to be run using the below command, default port for nginx is 80 
+
+```
+docker run -it -p 8080:80 IMAGE_ID 
+```
+
+# **Deploying the containerized react app into Azure** 
