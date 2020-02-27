@@ -18,6 +18,10 @@ master branch now has nginx branch merged into it.
 
 # react-dev-server 
 Switching react-dev-server branch will help see only those files that are required for this step.
+```
+git checkout -b react-dev-server origin/react-dev-server
+Branch 'react-dev-server' set up to track remote branch 'react-dev-server' from 'origin'.
+```
 
 The react project is created using create-recat-app 
 
