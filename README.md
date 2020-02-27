@@ -55,3 +55,8 @@ docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app IMAGE_ID
 ```
 ## Shorthening the command with docker compose
 Switch to docker-compose branch to see the files exactly like it is discribed in this section
+
+```
+git checkout -b docker-compose origin/docker-compose
+Branch 'docker-compose' set up to track remote branch 'docker-compose' from 'origin'.
+```
