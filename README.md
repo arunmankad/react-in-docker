@@ -1,6 +1,12 @@
-This is a sample project to demonstrate how React JS app can be build, tested and deployed into an nignx server using docker container. The last part of this doc disscuss deploying docker containers to Azure cloud using Azure container registry and azure web app for containers.
+This is a sample project to demonstrate how React JS app can be build, tested and deployed into an nignx server using docker container. The last part of this doc discuss deploying docker containers to Azure cloud using Azure container registry and azure web app for containers.
+The project is progressively build using different feature branches in the following order
+__react-dev-server__
+__docker-compose__
+__test__
+__nginx__
+__master__ branch now has nginx branch merged into it.
 
-The react project can be created using 
+The react project is created using create-recat-app 
 
 ```
 npx create-react-app PROJECT_NAME
@@ -19,13 +25,20 @@ To build the docker image using custom docker file
 docker build -f Dockerfile.dev .
 ```
 ## Remove duplicate dependencies
-The node_modules folder created by create-react-app can be removed from the project folder
+The __node_modules__ folder created by create-react-app can be removed from the project folder
 
 ## start the container
 The container can be started using the command - __docker run__, since the dev server used in create-react-app is served over port 3000, port 3000 of the conatiner has to be mapped to some port of the local machine(localhost) for it to be served over a browser.
 
 ```
 docker run -it -p 3000:3000 IMAGE_ID
+```
+
+**Docker Volumes**
+Hot reload of changes to the source file won't be available if we run the continer as in the above step.
+Docker volumes => -v /app/node_modules => points node_modules in the container, -v $(pwd):/app maps everything in present working directory to the app folder in the container 
+```
+docker run -p 30:3000 -v /app/node_modules -v $(pwd):/app IMAGE_ID d0b459a49b68
 ```
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
