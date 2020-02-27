@@ -18,6 +18,16 @@ To build the docker image using custom docker file
 ```
 docker build -f Dockerfile.dev .
 ```
+## Remove duplicate dependencies
+The node_modules folder created by create-react-app can be removed from the project folder
+
+## start the container
+The container can be started using the command - __docker run__, since the dev server used in create-react-app is served over port 3000, port 3000 of the conatiner has to be mapped to some port of the local machine(localhost) for it to be served over a browser.
+
+```
+docker run -it -p 3000:3000 IMAGE_ID
+```
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
