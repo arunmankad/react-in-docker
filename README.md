@@ -69,7 +69,7 @@ Branch 'docker-compose' set up to track remote branch 'docker-compose' from 'ori
 ```
 docker-compose.yml file is created will help avoid lengthy docker run command, with volume mapping and port ,mapping  => docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app IMAGE_ID. 
 Instead we call build the image and run the container using "docker-compose up --build",
-if image is already built, we needs to run use "docker-compose up" <br/>
+if image is already built, we needs to run use "docker-compose up" &nbsp;
 docker-compose.yml
 ```
 version: '3'
