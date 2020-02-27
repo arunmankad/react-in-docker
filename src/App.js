@@ -8,6 +8,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         Kollalo nice!
+        <p>DOCKER - REACT - NGINX</p>
       </header>
     </div>
   );
