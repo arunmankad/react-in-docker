@@ -4,8 +4,10 @@ The project is progressively build using different feature branches in the foll
 react-dev-server - custom Dockerfile.dev, and volume mapping
 ```
 ```  
-docker-compose -  docker-compose.yml added, it will help get rid of lengthy docker run command => docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app IMAGE_ID. 
-Instead we call build the image and run the container using "docker-compose up --build", if alreday build image needs to run use "docker-compose up" 
+docker-compose -  docker-compose.yml added, it will help get rid of lengthy docker run command 
+=> docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app IMAGE_ID. 
+Instead we call build the image and run the container using "docker-compose up --build",
+if alreday build image needs to run use "docker-compose up" 
 ```
 ```
 test - 2 step testing strategy 
