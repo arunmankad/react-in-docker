@@ -1,12 +1,24 @@
 This is a sample project to demonstrate how React JS app can be build, tested and deployed into an nignx server using docker container. The last part of this doc discuss deploying docker containers to Azure cloud using Azure container registry and azure web app for containers.
 The project is progressively build using different feature branches in the following order
 ```
-react-dev-server
-docker-compose
-test
-nginx
+react-dev-server - custom Dockerfile.dev, and volume mapping
+```
+```  
+docker-compose -  docker-compose.yml added
+```
+```
+test - 2 step testing strategy 
+```
+```
+nginx - nginx in prod
+```
+```
 master branch now has nginx branch merged into it.
 ```
+
+# react-dev-server 
+Switching react-dev-server branch will help see only those files that are required for this step.
+
 The react project is created using create-recat-app 
 
 ```
@@ -37,76 +49,9 @@ docker run -it -p 3000:3000 IMAGE_ID
 
 **Docker Volumes**
 Hot reload of changes to the source file won't be available if we run the continer as in the above step.
-Docker volumes => -v /app/node_modules => points node_modules in the container, -v $(pwd):/app maps everything in present working directory to the app folder in the container 
+Docker volumes => -v /app/node_modules => points node_modules in the container, -v $(pwd):/app maps everything in present working directory to the app folder in the container. The auto refresh of the changes in react app is a function of create-react-app, but for that to happen any changes that we make to files in local file system should propagate to the container and that is what we achieve through the volume mapping. 
 ```
-docker run -p 30:3000 -v /app/node_modules -v $(pwd):/app IMAGE_ID d0b459a49b68
+docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app IMAGE_ID 
 ```
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## Shorthening the command with docker compose
+Switch to docker-compose branch to see the files exactly like it is discribed in this section
