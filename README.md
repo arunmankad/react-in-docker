@@ -5,8 +5,19 @@ The react project can be created using
 ```
 npx create-react-app PROJECT_NAME
 ```
-
-
+Now change directory into the project folder, now we will create a custom Dockerfile named Dockerfile.dev
+```
+FROM node:alpine
+WORKDIR '/app'
+COPY package.json .
+RUN npm install
+COPY . .
+CMD ["npm", "run", "start"]
+```
+To build the docker image using custom docker file
+```
+docker build -f Dockerfile.dev .
+```
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
