@@ -1,11 +1,12 @@
 This is a sample project to demonstrate how React JS app can be build, tested and deployed into an nignx server using docker container. The last part of this doc discuss deploying docker containers to Azure cloud using Azure container registry and azure web app for containers.
 The project is progressively build using different feature branches in the following order
+```
 __react-dev-server__
 __docker-compose__
 __test__
 __nginx__
 __master__ branch now has nginx branch merged into it.
-
+```
 The react project is created using create-recat-app 
 
 ```
